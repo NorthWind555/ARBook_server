@@ -2,23 +2,18 @@
 
 #### 介绍
 AR图书项目的
-1.Socket通讯：服务器端(unity)+客户端（c#）
-
-#### 软件架构
-软件架构说明
-
+1.Socket通讯：服务器端(python)+客户端（c#）
+2.数据库操互模块（python）
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  需要一些外部导入的包  自己pip
+
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  需要配置和本代码一样的数据库名称，或者你自己改成你自己的
+2.请注意代码的注释  很关键
 
 #### 参与贡献
 
@@ -28,11 +23,3 @@ AR图书项目的
 4.  新建 Pull Request
 
 
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
