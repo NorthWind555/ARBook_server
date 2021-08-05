@@ -4,6 +4,7 @@
 # @Software : PyCharm
 
 import pymysql
+from Log_system import writeLog
 from timeit import default_timer
 from DBUtils.PooledDB import PooledDB
 
@@ -114,21 +115,27 @@ class UsingMysql(object):
 
     # 返回 count
     def get_count(self, sql, params=None, count_key='count(id)'):
-        self.cursor.execute(sql, params)
-        data = self.cursor.fetchone()
-        print("--  get_count,执行成功,sql=", sql)
-        if not data:
-            return 0
-        return data[count_key]
+        try:
+            self.cursor.execute(sql, params)
+            data = self.cursor.fetchone()
+            print("--  get_count,执行成功,sql=", sql)
+            writeLog("--  get_count,执行成功,sql={}".format(sql))
+            if not data:
+                return 0
+            return data[count_key]
+        except Exception:
+            print("--  get_count,Error,sql=", sql)
+            writeLog("--  get_count,Error,sql={}".format(sql))
 
     #执行sql语句 增加，删除，更新
     def executeSql(self,sql,params=None):
         try:
             self.cursor.execute(sql,params)
             print("--  executeSql,执行成功,sql=",sql)
+            writeLog("--  executeSql,执行成功,sql={}".format(sql))
         except Exception:
             print("executeSql，Error,sql=",sql)
-
+            writeLog("executeSql，Error,sql={}".format(sql))
     #保护变量
     @property
     def cursor(self):
