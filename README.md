@@ -10,5 +10,5 @@ DBUtils                   1.2
 
 请使用最新版本
 
-
+dist里面有exe成品 使用pyinstall打包
 
