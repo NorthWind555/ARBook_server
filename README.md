@@ -12,3 +12,6 @@ DBUtils                   1.2
 
 dist里面有exe成品 使用pyinstall打包
 
+v3.0启动命令：
+
+uvicorn app:app --reload  

@@ -85,5 +85,5 @@ if __name__ == '__main__':
         print("IP：172.17.4.84   端口：8081")
         s.serve_forever()  # 一直处于服务状态
     elif mode == 1:
-        s = socketserver.ThreadingTCPServer(('192.168.20.1', 8081), MyRequestHandler, bind_and_activate=True)
+        s = socketserver.ThreadingTCPServer(('192.168.173.10', 8081), MyRequestHandler, bind_and_activate=True)
         s.serve_forever()  # 一直处于服务状态
