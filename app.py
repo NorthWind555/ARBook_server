@@ -3,11 +3,14 @@ from fastapi import FastAPI, HTTPException
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
+from tortoise.exceptions import DoesNotExist, OperationalError
+
 from config import settings
 from fastapi.staticfiles import StaticFiles
 from core.Router import AllRouter
 from core.Events import startup, stopping
-from core.Exception import http_error_handler, http422_error_handler, unicorn_exception_handler, UnicornException
+from core.Exception import http_error_handler, http422_error_handler, unicorn_exception_handler, UnicornException, \
+    mysql_does_not_exist, mysql_operational_error
 from core.Middleware import Middleware
 
 application = FastAPI(
@@ -25,6 +28,8 @@ application.add_event_handler("shutdown", stopping(application))
 application.add_exception_handler(HTTPException, http_error_handler)
 application.add_exception_handler(RequestValidationError, http422_error_handler)
 application.add_exception_handler(UnicornException, unicorn_exception_handler)
+application.add_exception_handler(DoesNotExist, mysql_does_not_exist)
+application.add_exception_handler(OperationalError, mysql_operational_error)
 
 # 中间件
 application.add_middleware(Middleware)

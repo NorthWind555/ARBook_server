@@ -49,7 +49,7 @@ class User(TimesModel):
     role: fields.ManyToManyRelation[Role]
     name = fields.CharField(null=True, max_length=24, description="姓名")
     nickname = fields.CharField(default='newAccount', max_length=64, description='用户名')
-    password = fields.CharField(null=True, max_length=64, description='密码')
+    password = fields.CharField(null=True, max_length=255, description='密码')
     phone = fields.CharField(null=True, max_length=11, description="手机号")
     school = fields.CharField(null=True, max_length=64, description="学校")
     college = fields.CharField(null=True, max_length=64, description="学院")

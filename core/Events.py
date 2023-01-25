@@ -1,4 +1,6 @@
 from typing import Callable
+
+from aioredis import Redis
 from fastapi import FastAPI
 from database.mysql_cfg import register_mysql
 from database.redis_cfg import get_redis
@@ -34,7 +36,8 @@ def stopping(app: FastAPI) -> Callable:
     async def stop_app() -> None:
         # APP停止时触发
         print("fastapi已停止")
-
+        cache: Redis = await app.state.cache
+        await cache.close()
         pass
 
     return stop_app
