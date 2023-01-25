@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from tortoise.contrib.fastapi import register_tortoise
 import os
 
-
 # -----------------------数据库配置-----------------------------------
 DB_ORM_CONFIG = {
     "connections": {
@@ -54,6 +53,6 @@ async def register_mysql(app: FastAPI):
         app,
         config=DB_ORM_CONFIG,
         # 是否自动创建数据表
-        generate_schemas=True,
-        add_exception_handlers=True,
+        generate_schemas=True,  # 如果数据库为空，则自动生成对应表单
+        add_exception_handlers=True,  # 生产环境不要开，会泄露调试信息
     )

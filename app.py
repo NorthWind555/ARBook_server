@@ -30,9 +30,9 @@ application.add_exception_handler(UnicornException, unicorn_exception_handler)
 application.add_middleware(Middleware)
 application.add_middleware(
     SessionMiddleware,
-    secret_key="session",
-    session_cookie="f_id",
-    # max_age=4
+    secret_key=settings.SECRET_KEY,
+    session_cookie=settings.SESSION_COOKIE,
+    max_age=settings.SESSION_MAX_AGE
 )
 application.add_middleware(
     CORSMiddleware,
