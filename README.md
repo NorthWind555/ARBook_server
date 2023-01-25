@@ -1,17 +1,15 @@
-# ARBook_Socket
+# ARBook 3.0
 
-#### 安装教程
+#### 启动命令：
 
-1.  DBUtils需要1.2版本，请注意
-DBUtils                   1.2
-2.  数据库使用mysql
+```bash
+cd ARBook_server
 
-#### 使用说明
+uvicorn app:app --reload
+```
 
-请使用最新版本
+#### 项目介绍：
 
-dist里面有exe成品 使用pyinstall打包
+框架：fastapi
 
-v3.0启动命令：
-
-uvicorn app:app --reload  
+数据库：mysql,redis

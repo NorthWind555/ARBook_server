@@ -1,6 +1,7 @@
 from typing import Callable
 from fastapi import FastAPI
-from database.Mysql import register_mysql
+from database.mysql_cfg import register_mysql
+from database.redis_cfg import get_redis
 
 
 def startup(app: FastAPI) -> Callable:
@@ -15,6 +16,9 @@ def startup(app: FastAPI) -> Callable:
         print("fastapi已启动")
         # 注册数据库
         await register_mysql(app)
+        # 注入缓存到app state
+        app.state.cache = await get_redis()
+        print("redis初始化成功")
         pass
 
     return app_start
