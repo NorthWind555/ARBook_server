@@ -63,3 +63,9 @@ class User(TimesModel):
     class Meta:
         table_description = "用户表"
         table = "user"
+
+
+class File(TimesModel):
+    name = fields.CharField(max_length=64, description="文件名称", unique=True)
+    url = fields.CharField(max_length=512, description="文件路径")
+    type = fields.SmallIntField(default=0, description="文件类型")

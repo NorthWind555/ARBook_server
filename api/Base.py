@@ -1,4 +1,6 @@
 from fastapi import APIRouter, Security
+
+from api import file
 # from core.Auth import check_permissions
 from api.user import user_info, user_add, user_del, account_login, account_register
 from core.Auth import check_permissions
@@ -6,6 +8,7 @@ from core.Auth import check_permissions
 ApiRouter = APIRouter(prefix="/v1")
 
 
+ApiRouter.include_router(file.router)
 ApiRouter.post("/user/account/login", tags=["用户接口"], summary="用户登陆")(account_login)
 ApiRouter.post("/user/account/register",
                tags=["用户接口"],
