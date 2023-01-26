@@ -1,5 +1,5 @@
 from core.Response import success, fail
-from validator.user import CreateUser, AccountLogin, UserInfo
+from validator.user import CreateUser, AccountLogin, UserInfo, AccountRegister
 from models.base import User
 from core.Utils import en_password, check_password
 from core.Auth import create_access_token
@@ -24,6 +24,7 @@ async def user_add(post: CreateUser):
     :param post: CreateUser
     :return:
     """
+
     post.password = en_password(post.password)
     create_user = await User.create(**post.dict())
     if not create_user:
@@ -61,9 +62,19 @@ async def account_login(post: AccountLogin):
         "user_phone": get_user.phone
     }
     jwt_token = create_access_token(data=jwt_data)
-    # return success(msg="登陆成功😄", data={"token": jwt_token})
-    return JSONResponse({
-        "code": 200,
-        "message": "登陆成功😄",
-        "data": {}
-    }, status_code=200, headers={"Set-Cookie": "X-token=Bearer "+jwt_token})
+    return success(msg="登陆成功😄", data={"token": jwt_token})
+
+    # # 直接注入到cookie里面
+    # return JSONResponse({
+    #     "code": 200,
+    #     "message": "登陆成功😄",
+    #     "data": {}
+    # }, status_code=200, headers={"Set-Cookie": "X-token=Bearer " + jwt_token})
+
+
+async def account_register(post: AccountRegister):
+    # 验证激活码是否正确
+    if post.active_code == "123":
+        return await user_add(post)
+    else:
+        return fail(msg=f"激活码错误!")

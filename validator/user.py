@@ -6,9 +6,18 @@ from typing import Optional
 
 
 class CreateUser(BaseModel):
+    """
+    创建用户
+    """
     phone: str
     password: str = Field(min_length=3, max_length=12)
-    # active_code: str = Field(min_length=3, max_length=16)
+
+
+class AccountRegister(CreateUser):
+    """
+    用户注册，需要验证码
+    """
+    active_code: str = Field(min_length=3, max_length=16)
 
 
 class AccountLogin(BaseModel):
